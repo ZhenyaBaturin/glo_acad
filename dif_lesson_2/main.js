@@ -40,21 +40,12 @@ const n = [
     ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
     ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 ];
-let count;
-if (lang === "ru") {
-    count = 0;
-} else if (lang === "eng") {
-    count = 1;
-} else {
-    console.log("Что-то пошло не так");
-}
+let count; 
+ (lang === "ru") ? count = 0:
+ (lang === "eng") ? count = 1 : console.log("Что-то пошло не так");
+ 
     console.log(n[count][new Date().getDay()]);
 
 // 3.2
-if (namePerson.toLowerCase() === 'максим') {
-    console.log("Преподаватель");
-} else if (namePerson.toLowerCase() === 'артем') {
-    console.log("Директор");
-} else {
-    console.log("Студент");
-}
+(namePerson.toLowerCase() === 'максим') ? console.log("Преподаватель"):
+(namePerson.toLowerCase() === 'артем') ? console.log("Директор") : console.log("Студент");
