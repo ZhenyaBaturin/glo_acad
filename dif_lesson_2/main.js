@@ -63,3 +63,26 @@ const getValue = (a) => {
     }
 };
 getValue('Тут введен какой-то текст с большим количесвом строк');
+
+// lesson 5
+// 5.1
+const arr = ['342', '12', '234', '454', '837', '21', '653'];
+for(let i = 0; i < arr.length; i++) {
+    if (arr[i][0] === '2' || arr[i][0] === '4'){
+        console.log (arr[i]);
+    } 
+}
+// 5.2
+for(let i = 2; i < 10; i++) {
+    for(let n = 2; n < 10; n++){
+        if (i % n === 0 && i != n){
+
+            console.log(`${i} сложное`);
+            break;
+        } 
+    
+    console.log(`${i} и ${n}`);
+        
+      
+    }
+}
