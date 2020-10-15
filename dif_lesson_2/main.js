@@ -75,7 +75,7 @@ for(let i = 0; i < arr.length; i++) {
 // 5.2
 for(let i = 2; i < 10; i++) {
     for(let n = 2; n < 10; n++){
-        if (i % n === 0 && i != n){
+        if (i % n === 0 && i !== n){
 
             console.log(`${i} сложное`);
             break;
