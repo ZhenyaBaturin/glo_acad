@@ -73,16 +73,20 @@ for(let i = 0; i < arr.length; i++) {
     } 
 }
 // 5.2
-for(let i = 2; i < 10; i++) {
-    for(let n = 2; n < 10; n++){
-        if (i % n === 0 && i !== n){
 
-            console.log(`${i} сложное`);
-            break;
-        } 
-    
-    console.log(`${i} и ${n}`);
-        
-      
+x:for(let i = 1; i < 100; i++) {
+    for(let n = 2; n < i; n++){
+        if (i % n === 0 ) {
+            continue x;
+        }
     }
+    console.log(`${i} делитель 1 и ${i} `);
 }
+
+// lesson 7
+const body = document.querySelector('body');
+let week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+week.forEach((item, i) => {
+    body.innerHTML = item;
+    console.log(item);
+});
