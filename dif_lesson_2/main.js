@@ -70,6 +70,7 @@ const arr = ['342', '12', '234', '454', '837', '21', '653'];
 for(let i = 0; i < arr.length; i++) {
     if (arr[i][0] === '2' || arr[i][0] === '4'){
         console.log (arr[i]);
+        console.log(typeof(arr[i]));
     } 
 }
 // 5.2
@@ -87,6 +88,14 @@ x:for(let i = 1; i < 100; i++) {
 const body = document.querySelector('body');
 let week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 week.forEach((item, i) => {
-    body.innerHTML = item;
-    console.log(item);
+    let p = document.createElement('p');
+    document.body.appendChild(p);
+    p.innerHTML = item;
+    if ( i === 0 || i === 6) {
+        p.style.fontWeight = 'bold';
+    }
+    if(new Date().getDay() === i ){
+        p.style.borderBottom = '2px dashed';
+        p.style.display = 'inline-block';
+    }
 });
