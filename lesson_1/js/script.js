@@ -17,9 +17,25 @@ let appData = {
     expenses: {},
     addExpenses: [],
     deposit: false,
+    percentDeposit: 0,
+    moneyDeposit: 0,
     mission: 500000,
     period: 3,
     asking: function() {
+        let extraIncome = confirm('Есть ли у вас дополнительный заработок?');
+        if(extraIncome) {
+            let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Недвижимость');
+            while(isNumber(itemIncome)){
+                itemIncome = prompt('Какой у вас дополнительный заработок?');
+            }
+            let cashIncome = +prompt('Сколько в месяц зарабатываете на этом?', '10000');
+            while(!isNumber(cashIncome)){
+                cashIncome = prompt('Сколько в месяц зарабатываете на этом?', '10000');
+            }
+            appData.income[itemIncome] = cashIncome;
+        }
+           
+
         let addExpreses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
             appData.addExpenses = addExpreses.toLowerCase().split(', ');
             appData.deposit = confirm("Есть ли у вас депозит в банке?");
@@ -73,12 +89,23 @@ let appData = {
         } else {
             return("Что-то пошло не так");
         }
+    },
+    getInfoDeposit: function() {
+        if(this.deposit){
+            appData.percentDeposit = prompt('Какой годовой процент?', '10');
+            appData.moneyDeposit = prompt('Какая сумма заложена?', '5000');
+        }
+    },
+    calcSaveMoney: function() {
+        return this.budgetMonth * this.period;
+        
     }
 };
 
 appData.asking();
 appData.getAccumulatedMonth();
 appData.getExpensesMonth();
+appData.getInfoDeposit();
 
 for(let key in appData){
     console.log(`В объекте ${appData} присутствует ${key}`);
@@ -88,4 +115,15 @@ for(let key in appData){
 console.log(`Расходы за месяц ${appData.expensesMonth}`);
 console.log(`Цель будет достигнута за ${appData.getTargetMonth(appData.budgetMonth)} месяца(-ов)`);
 console.log(appData.getStatusIncome());
+console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSaveMoney());
 
+// let arr = [];
+// appData.addExpenses.forEach((item, i) => {
+//     arr = item[0].toUpperCase() + item.substr(1); 
+// });
+// console.log(...arr); 
+// console.log(arr); 
+
+// lesson 8
+let newArray = appData.addExpenses.map(item => item[0].toUpperCase() +  item.substr(1));
+console.log(newArray); 
