@@ -166,8 +166,11 @@ let appData = {
 start.addEventListener('click', () => {
     if(salaryAmount.value === '') {
         alert('Ошибка, необходимо заполнить месячный доход');
+        
+    } else {
+        appData.start();
     }
-    appData.start();
+    
 });
 expensesPlus.addEventListener('click', appData.addExpresesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
@@ -186,5 +189,3 @@ periodSelect.addEventListener('input', () => {
 
 // lesson 8
 let newArray = appData.addExpenses.map(item => item[0].toUpperCase() +  item.substr(1));
-console.log(newArray); 
-console.log(budgetDayValue);
