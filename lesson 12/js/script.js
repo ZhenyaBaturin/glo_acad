@@ -4,16 +4,10 @@ const todoControl = document.querySelector('.todo-control'),
     headerInput = document.querySelector('.header-input'),
     todoList = document.querySelector('.todo-list'),
     todoComplete = document.querySelector('.todo-completed');
-const todoData = [
-    {
-        value: 'Сварить кофе',
-        completed: false
-    },
-    {
-        value: 'Помыть посуду',
-        completed: true
-    }
-];
+
+let todoData = [];
+
+console.log(todoData);
 
 const render = function() {
     todoList.textContent = '';
@@ -28,6 +22,8 @@ const render = function() {
 			    <button class="todo-complete"></button>
 		    </div>
         `;
+        
+        
         if(item.completed ) {
             todoComplete.append(li);
         } else {
@@ -44,7 +40,10 @@ const render = function() {
                 item.completed = !item.completed;
                 render();
             });
-        
+            
+            let json = JSON.stringify(todoData);
+            localStorage.myText = json;
+            
     });
 };
 todoControl.addEventListener('submit', (e) => {
@@ -58,8 +57,13 @@ todoControl.addEventListener('submit', (e) => {
     } else {
         todoData.push (newObj);
         render();
-        document.querySelector('.header-input').placeholder = 'Нужный текст';
-    }
-   
+        document.querySelector('.header-input').value = '';
+    }  
 });
+
+todoData = JSON.parse(localStorage.myText); 
+todoData = todoData.filter((x) => {
+    return x !== undefined && x !== null;
+});
+
 render();
