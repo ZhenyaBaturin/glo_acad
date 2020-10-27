@@ -4,10 +4,11 @@ const todoControl = document.querySelector('.todo-control'),
     headerInput = document.querySelector('.header-input'),
     todoList = document.querySelector('.todo-list'),
     todoComplete = document.querySelector('.todo-completed');
+   
 
 let todoData = [];
 
-console.log(todoData);
+
 
 const render = function() {
     todoList.textContent = '';
@@ -41,10 +42,11 @@ const render = function() {
                 render();
             });
             
-            let json = JSON.stringify(todoData);
-            localStorage.myText = json;
-            
+        
+
     });
+    let json = JSON.stringify(todoData);
+    localStorage.myText = json;
 };
 todoControl.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -55,15 +57,18 @@ todoControl.addEventListener('submit', (e) => {
     if (newObj.value.trim() === '') {
         alert('Ммм...мне кажется стоит ввести какие-нибудь планы! Попробуйте еще раз!');
     } else {
-        todoData.push (newObj);
+        todoData.unshift (newObj);
         render();
         document.querySelector('.header-input').value = '';
     }  
 });
 
-todoData = JSON.parse(localStorage.myText); 
-todoData = todoData.filter((x) => {
+
+    todoData = JSON.parse(localStorage.myText); 
+    todoData = todoData.filter((x) => {
     return x !== undefined && x !== null;
 });
+
+
 
 render();
