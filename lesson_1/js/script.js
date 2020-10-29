@@ -28,7 +28,8 @@ let formElem = document.querySelectorAll('[type=text] '),
 let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
-
+let count = 1,
+    count2 = 1;
 
 class AppData {
     constructor() {
@@ -83,23 +84,21 @@ AppData.prototype.showResult =function() {
 };
 
 AppData.prototype.addExpresesBlock = function() {
-    let cloneExpensesItem = expensesItems[0].cloneNode(true);
-    expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
+    let div = document.createElement('div');
+    div.classList.add('.expenses-items');
+    div.innerHTML = `
+        <input type="text" class="expenses-title" placeholder="Наименование">
+        <input type="text" class="expenses-amount" placeholder="Сумма">
+    `;
+    expensesPlus.before(div);
     expensesItems = document.querySelectorAll('.expenses-items');
-    if (expensesItems.length === 3) {
-        expensesPlus.style.display = 'none';
+    count2 += 1;
+    console.log(count);
+    if(count2 === 3) {
+        expensesPlus.style.display = 'none'; 
     }
 };
 
-// AppData.prototype.getExpenses = function(){
-//     expensesItems.forEach(item => {
-//         let itemExpenses = item.querySelector('.expenses-title').value;
-//         let cashExpenses = item.querySelector('.expenses-amount').value;
-//         if(itemExpenses !== '' && cashExpenses !== '') {
-//             this.expenses[itemExpenses] = cashExpenses;
-//         }
-//     });
-// };
 
 AppData.prototype.getAddExpenses = function() {
     const _this = this;
@@ -113,25 +112,23 @@ AppData.prototype.getAddExpenses = function() {
 };
 
 AppData.prototype.addIncomeBlock = function(){
-    let cloneIncomeItems = incomeItems[0].cloneNode(true);
-    additionalIncomeValue.value = '';
-    incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
+  
+    let div = document.createElement('div');
+    div.classList.add('.income-items');
+    div.innerHTML = `
+    <input type="text" class="income-title" placeholder="Наименование">
+    <input type="text" class="income-amount" placeholder="Сумма">
+    `;
+    incomePlus.before(div);
     incomeItems = document.querySelectorAll('.income-items');
-    if (incomeItems.length === 3) {
-        incomePlus.style.display = 'none';
+    count += 1;
+    if(count === 3) {
+        incomePlus.style.display = 'none'; 
     }
+
 };
 
-// AppData.prototype.getIncome = function(){
-//     let incomeTitle = document.querySelector('.income-title').value;
-//     let incomeAmount = document.querySelector('.income-amount').value;
-//     if(incomeTitle !== '' && incomeAmount !== '') {
-//         this.income[incomeTitle] = incomeAmount;
-//     }
-//     for(let key in this.income){
-//         this.incomeMonth += +this.income[key];
-//     }
-// };
+
 
 AppData.prototype.getAddIncome = function(){
     const _this = this;
