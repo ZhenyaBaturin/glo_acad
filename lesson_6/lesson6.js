@@ -44,7 +44,7 @@
 // }
 // game();
 
-const myLesson = [
+let myLesson = [
     {lesson: 1, type: 'basic', points: 2},
     {lesson: 2, type: 'additional', points: 4},
     {lesson: 3, type: 'basic', points: 6},
@@ -62,22 +62,118 @@ const myLesson = [
     {lesson: 15, type: 'additional', points: 1},
     {lesson: 16, type: 'additional', points: 7},
   ];
-  let count = 0;
-  myLesson.forEach((num, i) => {
-    
 
-    
-    
-    if(num.type === 'additional') {
-        console.log(num);
-        myLesson.splice(count - 1, 1)
-    } else  {
-        num.points = num.points * 2;
-        // console.log(num);
-        
-    }
-    count++;
+  // let basic = [];
+  // myLesson.forEach((num, i) => {
+  //   if(num.type === 'basic') {
+  //     num.points = num.points / 2;
+  //     basic.push(num);
+  //   } 
+  // });
+  // console.log(basic);
+
+  myLesson = myLesson.filter((item) => {
+    if(item.type === 'basic') {
+      item.points = item.points / 2;
+      return item;
+    } 
   });
-  
   console.log(myLesson);
+
+//   const sum = document.querySelector('#sum');
+//   const mult = document.querySelector('#mult');
+//   const a = document.querySelector('#a');
+//   const b = document.querySelector('#b');
+//   const res = document.querySelector('#res');
+
+
+//   const calculator = {
+//   sum: function(){
+    
+//     return +a.value + +b.value;
+//   },
+//   mult: function(){
+    
+//     return a.value * b.value;
+//   },
+//   show: function(){
+//     mult.addEventListener('click', () => {
+//       res.value = this.mult();
+//     });
+//     sum.addEventListener('click', () => {
+//       res.value = this.sum();
+//     });
+//   }
+// };
+
+
+// calculator.show();
+
+// function getResult(x,y){
+//   let result = 0;
+  
+//   let sum = x ** y;
+ 
+//   for(let i = 0; i < sum.toString().length; i++) {
+//     result += Number(sum.toString()[i]);
+//   }
+
+//   return result;
+// }
+
+// console.log(getResult(4, 8));
+const country = document.querySelector('#country');
+const city = document.querySelector('#city');
+const result = document.querySelector('.result');
+
+const cityArr = {
+  rus: ['Москва', 'Санк-Петербург', 'Новосибирск', 'Екатеринбург', 'Нижний Новгород', 'Казань', 'Челябинск'],
+  uk: ['Киев', 'Харьков', 'Одесса', 'Днепр', 'Донецк', 'Запорожье', 'Львов'],
+  bel: ['Минск', 'Гомель', 'Могилёв', 'Витебск', 'Гродно', 'Брест'],
+  jap: ['Токио', 'Киото', 'Осака', 'Иокогама'], 
+  write: function (){
+    city.addEventListener('change', () => {
+      result.innerHTML = `${country.options[document.getElementById('country').selectedIndex].text}    ${city.value}`;
+    });
+    result.innerHTML = `${country.options[document.getElementById('country').selectedIndex].text}    ${city.value}`;
+  },
+
+  countryCity: function() {
+    if(country.value === 'rus') {
+      this.rus.forEach((elem) => {
+        let option = document.createElement('option');
+        option.textContent = `${elem}`;
+        city.append(option);
+      });
+    }else if (country.value === 'uk'){
+      this.uk.forEach((elem) => {
+        let option = document.createElement('option');
+        option.textContent = `${elem}`;
+        city.append(option);
+      });
+    }else if (country.value === 'bel'){
+      this.bel.forEach((elem) => {
+        let option = document.createElement('option');
+        option.textContent = `${elem}`;
+        city.append(option);
+      });
+    }else if (country.value === 'jap'){
+      this.jap.forEach((elem) => {
+        let option = document.createElement('option');
+        option.textContent = `${elem}`;
+        city.append(option);
+      });
+      
+    }
+    this.write();
+  },
+};
+cityArr.countryCity();
+country.addEventListener('change',(e) => {
+  city.innerHTML = null;
+  cityArr.countryCity();
+//не получается через e.target
+console.log(e.target.value);
+});
+
 
