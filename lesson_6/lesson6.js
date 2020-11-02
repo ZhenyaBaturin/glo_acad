@@ -63,22 +63,22 @@ let myLesson = [
     {lesson: 16, type: 'additional', points: 7},
   ];
 
-  // let basic = [];
-  // myLesson.forEach((num, i) => {
-  //   if(num.type === 'basic') {
-  //     num.points = num.points / 2;
-  //     basic.push(num);
-  //   } 
-  // });
-  // console.log(basic);
-
-  myLesson = myLesson.filter((item) => {
-    if(item.type === 'basic') {
-      item.points = item.points / 2;
-      return item;
+  let basic = [];
+  myLesson.forEach((num, i) => {
+    if(num.type === 'basic') {
+      num.points = num.points / 2;
+      basic.push(num);
     } 
   });
-  console.log(myLesson);
+  console.log(basic);
+
+  // myLesson = myLesson.filter((item) => {
+  //   if(item.type === 'basic') {
+  //     item.points = item.points / 2;
+  //     return item;
+  //   } 
+  // });
+  // console.log(myLesson);
 
 //   const sum = document.querySelector('#sum');
 //   const mult = document.querySelector('#mult');
@@ -122,58 +122,58 @@ let myLesson = [
 // }
 
 // console.log(getResult(4, 8));
-const country = document.querySelector('#country');
-const city = document.querySelector('#city');
-const result = document.querySelector('.result');
+// const country = document.querySelector('#country');
+// const city = document.querySelector('#city');
+// const result = document.querySelector('.result');
 
-const cityArr = {
-  rus: ['Москва', 'Санк-Петербург', 'Новосибирск', 'Екатеринбург', 'Нижний Новгород', 'Казань', 'Челябинск'],
-  uk: ['Киев', 'Харьков', 'Одесса', 'Днепр', 'Донецк', 'Запорожье', 'Львов'],
-  bel: ['Минск', 'Гомель', 'Могилёв', 'Витебск', 'Гродно', 'Брест'],
-  jap: ['Токио', 'Киото', 'Осака', 'Иокогама'], 
-  write: function (){
-    city.addEventListener('change', () => {
-      result.innerHTML = `${country.options[document.getElementById('country').selectedIndex].text}    ${city.value}`;
-    });
-    result.innerHTML = `${country.options[document.getElementById('country').selectedIndex].text}    ${city.value}`;
-  },
+// const cityArr = {
+//   rus: ['Москва', 'Санк-Петербург', 'Новосибирск', 'Екатеринбург', 'Нижний Новгород', 'Казань', 'Челябинск'],
+//   uk: ['Киев', 'Харьков', 'Одесса', 'Днепр', 'Донецк', 'Запорожье', 'Львов'],
+//   bel: ['Минск', 'Гомель', 'Могилёв', 'Витебск', 'Гродно', 'Брест'],
+//   jap: ['Токио', 'Киото', 'Осака', 'Иокогама'], 
+//   write: function (){
+//     city.addEventListener('change', () => {
+//       result.innerHTML = `${country.options[document.getElementById('country').selectedIndex].text}    ${city.value}`;
+//     });
+//     result.innerHTML = `${country.options[document.getElementById('country').selectedIndex].text}    ${city.value}`;
+//   },
 
-  countryCity: function() {
-    if(country.value === 'rus') {
-      this.rus.forEach((elem) => {
-        let option = document.createElement('option');
-        option.textContent = `${elem}`;
-        city.append(option);
-      });
-    }else if (country.value === 'uk'){
-      this.uk.forEach((elem) => {
-        let option = document.createElement('option');
-        option.textContent = `${elem}`;
-        city.append(option);
-      });
-    }else if (country.value === 'bel'){
-      this.bel.forEach((elem) => {
-        let option = document.createElement('option');
-        option.textContent = `${elem}`;
-        city.append(option);
-      });
-    }else if (country.value === 'jap'){
-      this.jap.forEach((elem) => {
-        let option = document.createElement('option');
-        option.textContent = `${elem}`;
-        city.append(option);
-      });
+//   countryCity: function() {
+//     if(country.value === 'rus') {
+//       this.rus.forEach((elem) => {
+//         let option = document.createElement('option');
+//         option.textContent = `${elem}`;
+//         city.append(option);
+//       });
+//     }else if (country.value === 'uk'){
+//       this.uk.forEach((elem) => {
+//         let option = document.createElement('option');
+//         option.textContent = `${elem}`;
+//         city.append(option);
+//       });
+//     }else if (country.value === 'bel'){
+//       this.bel.forEach((elem) => {
+//         let option = document.createElement('option');
+//         option.textContent = `${elem}`;
+//         city.append(option);
+//       });
+//     }else if (country.value === 'jap'){
+//       this.jap.forEach((elem) => {
+//         let option = document.createElement('option');
+//         option.textContent = `${elem}`;
+//         city.append(option);
+//       });
       
-    }
-    this.write();
-  },
-};
-cityArr.countryCity();
-country.addEventListener('change',(e) => {
-  city.innerHTML = null;
-  cityArr.countryCity();
-//не получается через e.target
-console.log(e.target.value);
-});
+//     }
+//     this.write();
+//   },
+// };
+// cityArr.countryCity();
+// country.addEventListener('change',(e) => {
+//   city.innerHTML = null;
+//   cityArr.countryCity();
+// //не получается через e.target
+// console.log(e.target.value);
+// });
 
 
