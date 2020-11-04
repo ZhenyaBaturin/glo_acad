@@ -6,6 +6,7 @@ function countTimer(deadline) {
     let timerHourd = document.querySelector('#timer-hours'),
         timerMinutes = document.querySelector('#timer-minutes'),
         timerSecond = document.querySelector('#timer-seconds');
+        updateClock ()
         // получаем deadline 
     function getTimeRemaiming() {
         let dateStop = new Date(deadline).getTime(),
