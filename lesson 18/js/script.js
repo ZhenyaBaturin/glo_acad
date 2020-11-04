@@ -6,7 +6,7 @@ function countTimer(deadline) {
     let timerHourd = document.querySelector('#timer-hours'),
         timerMinutes = document.querySelector('#timer-minutes'),
         timerSecond = document.querySelector('#timer-seconds');
-        updateClock ()
+        updateClock ();
         // получаем deadline 
     function getTimeRemaiming() {
         let dateStop = new Date(deadline).getTime(),
@@ -38,27 +38,40 @@ function countTimer(deadline) {
     }
     let idInterval = setInterval(updateClock, 1000);
 }
-countTimer('03 november 2020');
+countTimer('06 november 2020');
 //меню
 const toggleMenu = () => {
-    const btnMenu = document.querySelector('.menu'),
-        menu = document.querySelector('menu'),
-        closeBtn = document.querySelector('.close-btn'),
-        menuItems = menu.querySelectorAll('ul>li');
+    const menu = document.querySelector('menu'),
+        body = document.querySelector('body');
+
     const handlerMenu = () => {
         menu.classList.toggle('active-menu');
     };
-    btnMenu.addEventListener('click', () => {
-        handlerMenu();
-    });
-    closeBtn.addEventListener('click', () => {
-        handlerMenu();
-    });
-    menuItems.forEach((item) => {
-        item.addEventListener('click', () => {
+
+    body.addEventListener('click', (e) => {
+        let target = e.target;
+        if(target.classList.contains('close-btn')){
             handlerMenu();
-        });
+        } else if (target.matches('menu')){
+            target = target.closest('ul>li');
+            if( target === null){
+                return;
+            }else if(target.matches('li')){
+                handlerMenu();
+            } 
+        } else {
+            target = target.closest('.menu');
+            console.log(target);
+            if (target === null) {
+                menu.classList.remove('active-menu');
+                return;
+            }
+            else if(target.matches('.menu')){
+                handlerMenu(); 
+            } 
+        }
     });
+
 };
 toggleMenu();
 
@@ -66,7 +79,6 @@ toggleMenu();
 const togglePopUp = () => {
     const popup = document.querySelector('.popup'),
         popupBtn = document.querySelectorAll('.popup-btn'),
-        popupClose = document.querySelector('.popup-close'),
         popupContent = document.querySelector('.popup-content');
     let count = -30;
     popupBtn.forEach((item) => {
@@ -90,8 +102,18 @@ const togglePopUp = () => {
 
         });
     });
-    popupClose.addEventListener('click', () => {
-        popup.style.display = 'none';
+    
+    popup.addEventListener('click', (e) => {
+        let target = e.target;
+        if(target.classList.contains('popup-close')){
+            popup.style.display = 'none';
+        } else {
+            target = target.closest('.popup-content');
+        if(!target){
+            popup.style.display = 'none';
+        }
+        }
+            
     });
 
 };
@@ -110,6 +132,37 @@ const toggleStr = () => {
     });
 };
 toggleStr();
+//табы
+const tabs = () => {
+    const tabHeader = document.querySelector('.service-header'),
+        tab = document.querySelectorAll('.service-header-tab'),
+        tabContent = document.querySelectorAll('.service-tab');
+    const toggleTabContent = (index) => {
+        for (let i = 0; i < tabContent.length; i++){
+            if(index === i){
+                tab[i].classList.add('active');
+                tabContent[i].classList.remove('d-none');
+            } else {
+                tab[i].classList.remove('active');
+                tabContent[i].classList.add('d-none');
+            }
+            
+        } 
+    };
+        tabHeader.addEventListener('click', (e) => {
+            let target = e.target;
+                target =target.closest('.service-header-tab');/*проверяет у родителя о наличие необходимого атрибута*/ 
+            if(target.classList.contains('service-header-tab')){
+                tab.forEach((item, i) => {
+                    if(item === target) {
+                        toggleTabContent(i);
+                    }
+                });
+            }
+
+        });
+};
+tabs();
 
 
 
