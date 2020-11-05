@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+}
+.input {
+    text-align: center;
+}
+.input-text{
+    margin: 10px 20px 10px 20px;
+}
+.input-search{
+    width: 60%;
+    padding:10px;
+    border-radius:10px;
+}
+.text{
+    text-align: center;
+}
