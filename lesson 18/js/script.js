@@ -6,7 +6,7 @@ function countTimer(deadline) {
     let timerHourd = document.querySelector('#timer-hours'),
         timerMinutes = document.querySelector('#timer-minutes'),
         timerSecond = document.querySelector('#timer-seconds');
-        updateClock ();
+        // updateClock ();
         // получаем deadline 
     function getTimeRemaiming() {
         let dateStop = new Date(deadline).getTime(),
@@ -26,6 +26,7 @@ function countTimer(deadline) {
         }
     }
     // выводим deadline  в дом
+    let idInterval = setInterval(updateClock, 1000);
     function updateClock () {
         let timer = getTimeRemaiming();
         timerHourd.textContent = oneZero(timer.hours);
@@ -36,9 +37,9 @@ function countTimer(deadline) {
         } 
         
     }
-    let idInterval = setInterval(updateClock, 1000);
+    
 }
-countTimer('06 november 2020');
+countTimer('05 november 2020');
 //меню
 const toggleMenu = () => {
     const menu = document.querySelector('menu'),
