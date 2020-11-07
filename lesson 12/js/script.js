@@ -12,6 +12,7 @@ let todoData = [];
 
 const render = function() {
     todoList.textContent = '';
+    console.log(todoList);
     todoComplete.textContent = '';
     todoData.forEach((item, i) => {
         const li = document.createElement('li');
