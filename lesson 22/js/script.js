@@ -97,11 +97,14 @@ class Todo {
         document.querySelector(container).addEventListener('click', (e) => {
             let target = e.target;
             if(target.classList.contains('todo-remove')) {
-                this.deleteItem(e.path[2].key); 
+                this.deleteItem(e.target.parentNode.parentNode.key);
+                // this.deleteItem(e.path[2].key); 
             } else if(target.classList.contains('todo-complete')){
-                this.completedItem(e.path[2].key);
+                this.completedItem(e.target.parentNode.parentNode.key);
+                // this.completedItem(e.path[2].key);
             } else if (target.classList.contains('todo-edit')){
-                this.editingItem(e.path[2].key);
+                // this.editingItem(e.path[2].key);
+                this.editingItem(e.target.parentNode.parentNode.key);
             }
         });
     }
