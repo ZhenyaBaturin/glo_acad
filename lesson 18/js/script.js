@@ -249,6 +249,33 @@ const slider = () => {
     startSlide(1500);
 };
 slider();
+//меняет лица при наводке
+const toggleFaсe = () => {
+    const command = document.querySelector('#command')
+    const img = command.querySelectorAll('img');
+    img.forEach((elem) => {
+        let scr = elem.getAttribute('src');
+        elem.addEventListener('mousemove', (e) => {
+            e.target.src = e.target.dataset.img;
+        });
+        elem.addEventListener('mouseout', (e) => {
+            e.target.src = scr;
+        });
+    });
+};
+toggleFaсe();
+//калькулятор
+const calcСheck = () => {
+    const calcItem = document.querySelectorAll('.calc-item');
+    calcItem.forEach((elem) => {
+        elem.addEventListener('input', () => {
+            elem.value = elem.value.replace(/\D/gi, '');
+        });
+        
+    });
+};
+calcСheck();
+
 
 
 
