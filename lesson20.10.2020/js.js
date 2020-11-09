@@ -25,17 +25,21 @@ const getName = () => {
 };
 const getLogin= () => {
     const login = prompt('Введите логин');
-    
+    return login;
 };
 const getPassword = () => {
     let password = prompt('Введите пароль');
-    return 'sdsdfs'
+    return password;
 };
-new User(...(userName), getPassword);
-    console.log(new User(...(userName),  getPassword));
+
 buttonRecord.addEventListener('click', () => {
     getName();
-    User.getLogin();
-    getPassword();
-    console.log(new User(...(userName), getPassword), new Date());
+    const newObj = {
+        firstname: userName[0],
+        lastName: userName[1],
+        login: getLogin(),
+        password: getLogin()
+    },
+    userName = [];
+    console.log(newObj);
 });
