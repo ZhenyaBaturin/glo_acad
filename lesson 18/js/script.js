@@ -303,11 +303,21 @@ const calc = (price = 100) => {
          }
 
         if(typeValue && squareValue) {
-            total = Math.round(price * typeValue * squareValue * countValue * dayValue); 
+            total = Math.round(price * typeValue * squareValue * countValue * dayValue);
+            let n = 0;
+            let interval = setInterval(() => {
+                n++;
+                console.log(total);
+                if(total === n) {
+                    clearInterval(interval);
+                }
+                totalValue.textContent = n;
+            }, 0.1);
         } 
-        totalValue.textContent = total;
-    };
+      
 
+    };
+    
         calcBlock.addEventListener('change', (e) => {
             const target = e.target;
             if(target.matches('.calc-type') || target.matches('.calc-square') ||
