@@ -288,10 +288,7 @@ const calc = (price = 100) => {
     const countSum = () => {
         let total = 0,
             countValue = 1,
-            dayValue = 1,
-            
-            
-            
+            dayValue = 1; 
         const typeValue = calcType.options[calcType.selectedIndex].value,
              squareValue = +calcSquare.value;
 
