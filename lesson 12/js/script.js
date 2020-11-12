@@ -12,7 +12,6 @@ let todoData = [];
 
 const render = function() {
     todoList.textContent = '';
-    console.log(todoList);
     todoComplete.textContent = '';
     todoData.forEach((item, i) => {
         const li = document.createElement('li');
@@ -68,7 +67,7 @@ todoControl.addEventListener('submit', (e) => {
     todoData = JSON.parse(localStorage.myText); 
     todoData = todoData.filter((x) => {
     return x !== undefined && x !== null;
-});
+    });
 
 
 

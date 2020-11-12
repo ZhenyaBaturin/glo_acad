@@ -5,6 +5,7 @@ const h1 = document.querySelector('h1'),
     buttonAuthorization = document.querySelector('.button-authorization');
 let userName = [];
 let count = 0;
+let user = [];
 
 
 const getName = () => {
@@ -31,15 +32,40 @@ const getPassword = () => {
     let password = prompt('Введите пароль');
     return password;
 };
-
+const getNowDate = () => {
+    const date = new Date();
+    const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+    return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()} г., ${new Date().toLocaleTimeString()}`;
+};
+const showCotent = () => {
+    const divUser = document.querySelector('.user');
+    divUser.textContent = '';
+//    let Obj = JSON.parse (localStorage.getItem ("newObj")); 
+    user.forEach((item) => {
+        let div = document.createElement('div');
+        divUser.append(div);
+        div.innerHTML = `Имя ${item.firstname}`;
+    });    
+   
+};
+let json = JSON.stringify(user);
+    localStorage.myText = json;
+showCotent();
 buttonRecord.addEventListener('click', () => {
     getName();
     const newObj = {
         firstname: userName[0],
         lastName: userName[1],
         login: getLogin(),
-        password: getLogin()
-    },
+        password: getLogin(),
+        regDate: getNowDate() 
+    };
+    // localStorage.setItem (newObj.lastName, JSON.stringify(newObj));
+    // console.log(JSON.stringify(newObj));
+    
+    user.unshift(newObj);
+    showCotent();
     userName = [];
     console.log(newObj);
 });
+user = JSON.parse(localStorage.myText); 

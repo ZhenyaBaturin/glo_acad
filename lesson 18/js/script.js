@@ -283,11 +283,15 @@ const calc = (price = 100) => {
         calcDay = document.querySelector('.calc-day'),
         calcCount = document.querySelector('.calc-count'),
         totalValue = document.getElementById('total');
-
+    let n = 0,
+        x = false;
     const countSum = () => {
         let total = 0,
             countValue = 1,
-            dayValue = 1;
+            dayValue = 1,
+            
+            
+            
         const typeValue = calcType.options[calcType.selectedIndex].value,
              squareValue = +calcSquare.value;
 
@@ -301,20 +305,21 @@ const calc = (price = 100) => {
          } else  if(calcDay.value > 11){
             dayValue *= 1;
          }
-
         if(typeValue && squareValue) {
             total = Math.round(price * typeValue * squareValue * countValue * dayValue);
-            let n = 0;
-            let interval = setInterval(() => {
-                n++;
-                console.log(total);
-                if(total === n) {
+            
+            x = true
+            let interval = setInterval(() => { 
+                n += 10;
+                if(total <= n) {
                     clearInterval(interval);
+                    x = false;
                 }
                 totalValue.textContent = n;
             }, 0.1);
+            
         } 
-      
+        
 
     };
     
@@ -322,6 +327,8 @@ const calc = (price = 100) => {
             const target = e.target;
             if(target.matches('.calc-type') || target.matches('.calc-square') ||
             target.matches('.calc-day') || target.matches('.calc-count')) {
+                totalValue.textContent = 0;
+                
                 countSum();
             }
         });
