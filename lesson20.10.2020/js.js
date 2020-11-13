@@ -49,7 +49,6 @@ const showCotent = () => {
         let div = document.createElement('div');
         divUser.append(div);
         div.innerHTML = `Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate} `;
-        console.log(user);
     });    
     let json = JSON.stringify(user);
     localStorage.myText = json;
