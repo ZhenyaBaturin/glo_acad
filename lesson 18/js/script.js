@@ -268,11 +268,17 @@ toggleFaсe();
 const calcСheck = () => {
     const calcBlokc = document.querySelector('.calc-block');
     const calcItem = calcBlokc.querySelectorAll('input');
-    calcItem.forEach((elem) => {
-        elem.addEventListener('input', () => {
-            elem.value = elem.value.replace(/\D/gi, '');
-        });
-    });
+    for(let i = 0; i < calcItem.length; i++){
+        calcItem[i]/addEventListener('input', () => {
+            if(i === 1){
+                calcItem[i].setAttribute('maxlength', '1'); 
+                calcItem[i].value = elem.value.replace(/\D/gi, '');
+            } else {
+                calcItem[i].setAttribute('maxlength', '3');
+                calcItem[i].value = elem.value.replace(/\D/gi, '');
+            }
+        })
+    }
 };
 calcСheck();
 //калькулятор
@@ -283,8 +289,7 @@ const calc = (price = 100) => {
         calcDay = document.querySelector('.calc-day'),
         calcCount = document.querySelector('.calc-count'),
         totalValue = document.getElementById('total');
-    let n = 0,
-        x = false;
+    let n = 0;
     const countSum = () => {
         let total = 0,
             countValue = 1,
@@ -304,20 +309,14 @@ const calc = (price = 100) => {
          }
         if(typeValue && squareValue) {
             total = Math.round(price * typeValue * squareValue * countValue * dayValue);
-            
-            x = true
             let interval = setInterval(() => { 
-                n += 10;
+                n += 100;
                 if(total <= n) {
                     clearInterval(interval);
-                    x = false;
                 }
                 totalValue.textContent = n;
             }, 0.1);
-            
         } 
-        
-
     };
     
         calcBlock.addEventListener('change', (e) => {
