@@ -7,7 +7,6 @@ let userName = [];
 let count = 0;
 let user = [];
 
-
 const getName = () => {
     let name = prompt('Введите через пробел имя и фамилию пользователя');
     name = name.trim();
@@ -19,53 +18,57 @@ const getName = () => {
     if(count >= 2){
         alert('Вы ввели мног пробелов, введите заново');
         getName();
+        count = 0;
     } else if(count <= 1){
         userName = name.split(' ');
         count = 0;
     }     
 };
+
 const getLogin= () => {
     const login = prompt('Введите логин');
     return login;
 };
+
 const getPassword = () => {
     let password = prompt('Введите пароль');
     return password;
 };
+
 const getNowDate = () => {
     const date = new Date();
     const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
     return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()} г., ${new Date().toLocaleTimeString()}`;
 };
+
 const showCotent = () => {
     const divUser = document.querySelector('.user');
     divUser.textContent = '';
-//    let Obj = JSON.parse (localStorage.getItem ("newObj")); 
+
     user.forEach((item) => {
         let div = document.createElement('div');
         divUser.append(div);
-        div.innerHTML = `Имя ${item.firstname}`;
+        div.innerHTML = `Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate} `;
+        console.log(user);
     });    
-   
-};
-let json = JSON.stringify(user);
+    let json = JSON.stringify(user);
     localStorage.myText = json;
-showCotent();
+};
+
 buttonRecord.addEventListener('click', () => {
     getName();
     const newObj = {
         firstname: userName[0],
         lastName: userName[1],
         login: getLogin(),
-        password: getLogin(),
+        password: getPassword(),
         regDate: getNowDate() 
     };
-    // localStorage.setItem (newObj.lastName, JSON.stringify(newObj));
-    // console.log(JSON.stringify(newObj));
     
     user.unshift(newObj);
     showCotent();
     userName = [];
-    console.log(newObj);
+    
 });
 user = JSON.parse(localStorage.myText); 
+showCotent();

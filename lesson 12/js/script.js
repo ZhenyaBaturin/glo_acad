@@ -64,10 +64,10 @@ todoControl.addEventListener('submit', (e) => {
 });
 
 
-    todoData = JSON.parse(localStorage.myText); 
-    todoData = todoData.filter((x) => {
-    return x !== undefined && x !== null;
-    });
+todoData = JSON.parse(localStorage.myText); 
+todoData = todoData.filter((x) => {
+return x !== undefined && x !== null;
+});
 
 
 
