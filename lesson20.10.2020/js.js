@@ -3,6 +3,7 @@
 const h1 = document.querySelector('h1'),
     buttonRecord = document.querySelector('.button-record'),
     buttonAuthorization = document.querySelector('.button-authorization');
+    
 let userName = [];
 let count = 0;
 let user = [];
@@ -45,13 +46,22 @@ const showCotent = () => {
     const divUser = document.querySelector('.user');
     divUser.textContent = '';
 
-    user.forEach((item) => {
+    user.forEach((item, i) => {
         let div = document.createElement('div');
+        div.className = 'block';
         divUser.append(div);
-        div.innerHTML = `Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate} `;
+        div.innerHTML = `Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate}
+        <div class="btn">&#10007</div>`;
+        const btnClose = document.querySelector('.btn');
+        btnClose.addEventListener('click', () => {
+            // delete user[i];
+            // showCotent();
+            console.log(item);
+        })
     });    
     let json = JSON.stringify(user);
     localStorage.myText = json;
+
 };
 
 buttonRecord.addEventListener('click', () => {
@@ -70,4 +80,26 @@ buttonRecord.addEventListener('click', () => {
     
 });
 user = JSON.parse(localStorage.myText); 
+user = user.filter((x) => {
+return x !== undefined && x !== null;
+});
 showCotent();
+
+const loginUser = () => {
+    let flag = false
+    let login = prompt('Введите логин');
+    let pass = prompt('Введите пароль');
+    user.forEach((item) => {
+        if(login === item.login && pass === item.password){
+            const h1 = document.querySelector('h1');
+            h1.innerHTML = `Привет ${item.firstname}`;
+            flag = true
+        } 
+    })
+    if(!flag){
+        alert('Логин или пароль не верный!');
+    }
+}
+buttonAuthorization.addEventListener('click', () => {
+    loginUser();
+});

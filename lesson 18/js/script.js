@@ -272,10 +272,10 @@ const calcСheck = () => {
         calcItem[i]/addEventListener('input', () => {
             if(i === 1){
                 calcItem[i].setAttribute('maxlength', '1'); 
-                calcItem[i].value = elem.value.replace(/\D/gi, '');
+                calcItem[i].value = calcItem[i].value.replace(/\D/gi, '');
             } else {
                 calcItem[i].setAttribute('maxlength', '3');
-                calcItem[i].value = elem.value.replace(/\D/gi, '');
+                calcItem[i].value = calcItem[i].value.replace(/\D/gi, '');
             }
         })
     }
