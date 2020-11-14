@@ -32,8 +32,9 @@ const render = function() {
         } 
         const todoRemove = li.querySelector('.todo-remove');
         todoRemove.addEventListener('click', () => {
-            delete todoData[i];
-            render();
+            // delete todoData[i];
+            // render();
+            console.log(i);
         });
 
         const todoCompeleted = li.querySelector('.todo-complete');
@@ -46,7 +47,7 @@ const render = function() {
 
     });
     let json = JSON.stringify(todoData);
-    localStorage.myText = json;
+    localStorage.myTexts = json;
 };
 todoControl.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -64,7 +65,7 @@ todoControl.addEventListener('submit', (e) => {
 });
 
 
-todoData = JSON.parse(localStorage.myText); 
+todoData = JSON.parse(localStorage.myTexts); 
 todoData = todoData.filter((x) => {
 return x !== undefined && x !== null;
 });

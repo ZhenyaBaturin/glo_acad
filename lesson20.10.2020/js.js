@@ -49,15 +49,17 @@ const showCotent = () => {
     user.forEach((item, i) => {
         let div = document.createElement('div');
         div.className = 'block';
-        divUser.append(div);
+        console.log(item);
         div.innerHTML = `Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate}
         <div class="btn">&#10007</div>`;
-        const btnClose = document.querySelector('.btn');
-        btnClose.addEventListener('click', () => {
+        divUser.append(div);
+        const btnClose = divUser.querySelector('.btn');
+        const block = divUser.querySelector('.block');
+        // block.addEventListener('click', () => {
             // delete user[i];
             // showCotent();
-            console.log(item);
-        })
+            console.log(block);
+        // })
     });    
     let json = JSON.stringify(user);
     localStorage.myText = json;

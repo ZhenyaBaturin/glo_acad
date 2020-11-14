@@ -345,6 +345,7 @@ const sendForm = () => {
         formInput3 = form3.querySelectorAll('input'),       
         formPhone = document.querySelectorAll('.form-phone'),
         formName = document.querySelectorAll('.form-name'),
+        formEmail = document.querySelectorAll('.form-email'),
         topForm = form2.querySelector('.top-form'),
         form2Mess = form2.querySelector('.mess');
 
@@ -359,6 +360,12 @@ const sendForm = () => {
             item.value = item.value.replace(/[^а-я\s]/gi, '');
         })
     })
+    formEmail.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/ /g, '');
+        })
+    })
+        
     topForm.addEventListener('input', () => {
         topForm.value = topForm.value.replace(/[^а-я\s]/gi, '');
     });
