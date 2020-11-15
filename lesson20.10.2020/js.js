@@ -2,8 +2,8 @@
 
 const h1 = document.querySelector('h1'),
     buttonRecord = document.querySelector('.button-record'),
-    buttonAuthorization = document.querySelector('.button-authorization');
-    
+    buttonAuthorization = document.querySelector('.button-authorization'),
+    divUser = document.querySelector('.user');
 let userName = [];
 let count = 0;
 let user = [];
@@ -43,28 +43,28 @@ const getNowDate = () => {
 };
 
 const showCotent = () => {
-    const divUser = document.querySelector('.user');
     divUser.textContent = '';
-
     user.forEach((item, i) => {
         let div = document.createElement('div');
-        div.className = 'block';
-        console.log(item);
-        div.innerHTML = `Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate}
-        <div class="btn">&#10007</div>`;
+        div.classList.add('block');
+        div.innerHTML = `
+        <span>Имя: ${item.firstname}, фамилия ${item.lastName}, зарегистрирован: ${item.regDate}</span>
+        <div class="btn">&#10007</div>
+        `;
         divUser.append(div);
-        const btnClose = divUser.querySelector('.btn');
-        const block = divUser.querySelector('.block');
-        // block.addEventListener('click', () => {
-            // delete user[i];
-            // showCotent();
-            console.log(block);
-        // })
+        
+        const btnClose = divUser.querySelectorAll('.btn')[i];
+        btnClose.addEventListener('click', () => {
+            delete user[i];
+            showCotent();
+            console.log(i);
+        })
     });    
     let json = JSON.stringify(user);
     localStorage.myText = json;
 
 };
+
 
 buttonRecord.addEventListener('click', () => {
     getName();

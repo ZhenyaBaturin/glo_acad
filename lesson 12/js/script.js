@@ -23,7 +23,7 @@ const render = function() {
 			    <button class="todo-complete"></button>
 		    </div>
         `;
-        
+        console.log(item);
         
         if(item.completed ) {
             todoComplete.append(li);
