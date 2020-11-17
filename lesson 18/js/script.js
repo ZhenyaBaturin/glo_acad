@@ -39,7 +39,7 @@ function countTimer(deadline) {
     }
     
 }
-countTimer('15 november 2020');
+countTimer('20 november 2020');
 //меню
 const toggleMenu = () => {
     const menu = document.querySelector('menu'),
@@ -385,12 +385,9 @@ const sendForm = () => {
         for(let val of formData.entries()){
             body[val[0]] = val[1]
         }
-        postData(body, () => {
-            statusMessage.textContent = successMessege;
-        }, (error) => {
-            statusMessage.textContent = errorMessege;
-            console.log(error);
-        })
+        postData(body)
+            .then()
+            .catch()
         formInput.forEach(item => {
             item.value ='';
         })
@@ -405,12 +402,9 @@ const sendForm = () => {
         for(let val of formData.entries()){
             body[val[0]] = val[1]
         }
-        postData(body, () => {
-            statusMessage.textContent = successMessege;
-        }, (error) => {
-            statusMessage.textContent = errorMessege;
-            console.log(error);
-        })
+        postData(body)
+            .then()
+            .catch()
         formInput2.forEach(item => {
             item.value = '';
         })
@@ -425,35 +419,33 @@ const sendForm = () => {
         for(let val of formData.entries()){
             body[val[0]] = val[1]
         }
-        postData(body, () => {
-            statusMessage.textContent = successMessege;
-        }, (error) => {
-            statusMessage.textContent = errorMessege;
-            console.log(error);
-        })
+        postData(body)
+            .then()
+            .catch()
+          
         formInput3.forEach(item => {
             item.value = '';
         })
     })
     
-        const postData = (body, outputData, errorData) => {
-            const request = new XMLHttpRequest();
-
-            request.addEventListener('readystatechange', () => {
-                
-                if(request.readyState !== 4) {
-                    return;
-                }
-                if(request.status === 200) {
-                    outputData();           
-                } else {
-                    errorData(request.status); 
-                }
-            });
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
-            }
+        const postData = (body) => {
+            return new Promise((resolve, reject) => {
+                const request = new XMLHttpRequest();
+                request.addEventListener('readystatechange', () => {  
+                    if(request.readyState !== 4) {
+                        return;
+                    }
+                    if(request.status === 200) {
+                        resolve(statusMessage.textContent = successMessege);           
+                    } else {
+                        reject(statusMessage.textContent = errorMessege); 
+                    }
+                });
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(JSON.stringify(body));
+            })
+        }
         
 
 }
