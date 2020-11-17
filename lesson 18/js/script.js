@@ -386,8 +386,13 @@ const sendForm = () => {
             body[val[0]] = val[1]
         }
         postData(body)
-            .then()
-            .catch()
+            .then(() => {
+                statusMessage.textContent = successMessege
+            })
+            .catch((error) => {
+                statusMessage.textContent = errorMessege;
+                console.log(error);
+            })
         formInput.forEach(item => {
             item.value ='';
         })
@@ -403,8 +408,13 @@ const sendForm = () => {
             body[val[0]] = val[1]
         }
         postData(body)
-            .then()
-            .catch()
+            .then(() => {
+                statusMessage.textContent = successMessege
+            })
+            .catch((error) => {
+                statusMessage.textContent = errorMessege;
+                console.log(error);
+            })
         formInput2.forEach(item => {
             item.value = '';
         })
@@ -420,8 +430,13 @@ const sendForm = () => {
             body[val[0]] = val[1]
         }
         postData(body)
-            .then()
-            .catch()
+            .then(() => {
+                statusMessage.textContent = successMessege
+            })
+            .catch((error) => {
+                statusMessage.textContent = errorMessege;
+                console.log(error);
+            })
           
         formInput3.forEach(item => {
             item.value = '';
@@ -436,9 +451,9 @@ const sendForm = () => {
                         return;
                     }
                     if(request.status === 200) {
-                        resolve(statusMessage.textContent = successMessege);           
+                        resolve();           
                     } else {
-                        reject(statusMessage.textContent = errorMessege); 
+                        reject(request.statusText); 
                     }
                 });
                 request.open('POST', './server.php');
