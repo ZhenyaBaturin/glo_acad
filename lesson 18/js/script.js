@@ -348,16 +348,24 @@ const sendForm = () => {
         formEmail = document.querySelectorAll('.form-email'),
         topForm = form2.querySelector('.top-form'),
         form2Mess = form2.querySelector('.mess');
-
+    let timeOut = () => {
+        setTimeout(() => {
+            statusMessage.style.display = 'none';
+        }, 3000);
+    } 
 
     formPhone.forEach(item => {
         item.addEventListener('input', () => {
-            item.value = item.value.replace(/[^0-9+]/gi, '');
+            
+            item.setAttribute('maxlength', '11');
+            item.setAttribute('minlength', '7')
+            item.value = item.value.replace(/[^0-9+]/gi, '');            
         })
     });
     formName.forEach(item => {
         item.addEventListener('input', () => {
             item.value = item.value.replace(/[^а-я\s]/gi, '');
+            
         })
     })
     formEmail.forEach(item => {
@@ -382,15 +390,26 @@ const sendForm = () => {
         const formData = new FormData(form);
         let body = {};
 
+        
+
+
+
+
+
         for(let val of formData.entries()){
             body[val[0]] = val[1]
         }
         postData(body)
-            .then(() => {
-                statusMessage.textContent = successMessege
+            .then((response) => {
+                if(response.status !== 200){
+                    throw new Error('error')
+                }
+                statusMessage.textContent = successMessege;
+                timeOut();
             })
             .catch((error) => {
                 statusMessage.textContent = errorMessege;
+                timeOut();
                 console.log(error);
             })
         formInput.forEach(item => {
@@ -408,11 +427,16 @@ const sendForm = () => {
             body[val[0]] = val[1]
         }
         postData(body)
-            .then(() => {
-                statusMessage.textContent = successMessege
+            .then((response) => {
+                if(response.status !== 200){
+                    throw new Error('error')
+                }
+                statusMessage.textContent = successMessege;
+                timeOut();
             })
             .catch((error) => {
                 statusMessage.textContent = errorMessege;
+                timeOut();
                 console.log(error);
             })
         formInput2.forEach(item => {
@@ -430,11 +454,16 @@ const sendForm = () => {
             body[val[0]] = val[1]
         }
         postData(body)
-            .then(() => {
-                statusMessage.textContent = successMessege
+            .then((response) => {
+                if(response.status !== 200){
+                    throw new Error('error')
+                }
+                statusMessage.textContent = successMessege;
+                timeOut();
             })
             .catch((error) => {
                 statusMessage.textContent = errorMessege;
+                timeOut();
                 console.log(error);
             })
           
@@ -444,50 +473,16 @@ const sendForm = () => {
     })
     
         const postData = (body) => {
-            return new Promise((resolve, reject) => {
-                const request = new XMLHttpRequest();
-                request.addEventListener('readystatechange', () => {  
-                    if(request.readyState !== 4) {
-                        return;
-                    }
-                    if(request.status === 200) {
-                        resolve();           
-                    } else {
-                        reject(request.statusText); 
-                    }
-                });
-                request.open('POST', './server.php');
-                request.setRequestHeader('Content-Type', 'application/json');
-                request.send(JSON.stringify(body));
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
             })
         }
-        
-
 }
 sendForm();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
